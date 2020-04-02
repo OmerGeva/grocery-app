@@ -1,0 +1,14 @@
+
+<h1 class="text-center m-5">supermarkets</h1>
+<div class="container">
+  <div class="row">
+    <% @supermarkets.each do |supermarket| %>
+      <div class="col-sm">
+        <h3><%= supermarket.name %></h3>
+        <%= link_to supermarket_path(supermarket) do%>
+          <%= cl_image_tag supermarket.photo.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

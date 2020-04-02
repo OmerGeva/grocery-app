@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1>Your Order</h1>
+      <% @order_items.each do |order_item| %>
+          <div class="col-4-lg col-6-md col-12-sm">
+            <div class="card-product">
+              <div class="text-center">
+                <%= cl_image_tag order_item.item.photo.key, height: 300, width: 400, crop: :fill if order_item.item.photo.key %>
+              </div>
+              <div class="card-product-infos border-top">
+                <h2><%= order_item.item.name %></h2>
+                <p><%= order_item.item.description %></p>
+                <div class="d-flex justify-content-between">
+                  <p><%= order_item.item.price %> X <%= order_item.amount  %> = ₪<%= order_item.item.price*order_item.amount %> </p>
+                </div>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+      <h3 class="m-5">Your Total: ₪<%= @total_price %></h3>
+  </div>
+</div>

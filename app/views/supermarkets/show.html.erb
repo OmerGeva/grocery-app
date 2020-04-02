@@ -1,0 +1,48 @@
+<div class="text-center">
+
+  <h1 class="m-2"><%= @supermarket.name %></h1>
+  <div class="col-8 d-flex m-2">
+    <%= form_tag supermarket_search_path(@supermarket), method: :patch do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Find an item"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @items.each do |item| %>
+      <% unless item[3].nil? %>
+        <div class="col-4-lg col-6-md col-12-sm">
+          <div class="card-product">
+            <div class="text-center">
+              <img src=<%= item[3] %> alt="photo" class='m-3'>
+            </div>
+            <div class="card-product-infos border-top">
+              <h2><%= item[0] %></h2>
+              <p><%= item[2] %></p>
+              <div class="d-flex justify-content-between">
+                <p> ₪<%= item[1] %></p>
+                <div>
+                  <% if current_user.customer.orders.empty? %>
+                    <%= link_to "Add to order", orders_path(:name => "#{item[0]}", :price => "#{item[1]}", :description => "#{item[1]}", :img => "#{item[3]}"), class: 'btn btn-primary', method: :post  %>
+                  <% else %>
+                    <%= link_to "Add to order", order_path(:name => "#{item[0]}", :price => "#{item[1]}", :description => "#{item[1]}", :img => "#{item[3]}"), class: 'btn btn-primary', method: :patch  %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
+<%= javascript_pack_tag 'search-items' %>

@@ -1,0 +1,31 @@
+<div class="container text-center mt-5">
+  <h2>Enter your information</h2>
+  <div class="col-8 m-auto">
+    <%= simple_form_for @customer do |f| %>
+      <%= f.error_notification %>
+      <div class="form-inputs">
+        <%= f.input :first_name,
+                    required: true,
+                    autofocus: true,
+                    input_html: { autocomplete: "first_name" }%>
+        <%= f.input :last_name,
+                     required: true,
+                     autofocus: true,
+                     input_html: { autocomplete: "last_name" }%>
+        <%= f.input :phone_number,
+                     required: true,
+                     autofocus: true,
+                     input_html: { autocomplete: "phone_number" }%>
+        <%= f.input :address,
+                     required: true,
+                     autofocus: true,
+                     input_html: { autocomplete: "address" }%>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Register as a customer", class: 'btn btn-primary'%>
+      </div>
+    <% end %>
+
+  </div>
+</div>
