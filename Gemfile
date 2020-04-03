@@ -17,7 +17,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'pundit'
 gem 'addressable'
-
+gem 'rack-cors'
 
 gem 'simple_token_authentication'
 gem 'cloudinary', '~> 1.12.0'
