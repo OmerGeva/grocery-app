@@ -19,7 +19,7 @@ class Api::V1::SupermarketsController < Api::V1::BaseController
     if session["searched_word"]
       searched_word = session["searched_word"]
     else
-      searched_word = ''
+      searched_word = 'a'
     end
     url = "https://www.shufersal.co.il/online/he/search?text=#{searched_word}"
     addressableURl = Addressable::URI.encode(url)
