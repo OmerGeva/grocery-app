@@ -1,4 +1,4 @@
-json.items @items do |item|
+json.array! @items do |item|
   json.item do
     json.name item[0]
     json.price item[1]
