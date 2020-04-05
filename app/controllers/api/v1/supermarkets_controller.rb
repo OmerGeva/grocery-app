@@ -17,14 +17,13 @@ class Api::V1::SupermarketsController < Api::V1::BaseController
 
 #############  PARSING   ###################################################################
     if session["searched_word"]
-      searched_word = session["searched_word"]
+      current_user.searched_word = session["searched_word"]
     else
-      searched_word = 'a'
+      current_user.searched_word = ''
     end
-    url = "https://www.shufersal.co.il/online/he/search?text=#{searched_word}"
+    url = "https://www.shufersal.co.il/online/he/search?text=#{current_user.searched_word}"
     addressableURl = Addressable::URI.encode(url)
     html_file = open(addressableURl).read
-    p session["searched_word"]
     html_doc = Nokogiri::HTML(html_file)
 
     @items = []
