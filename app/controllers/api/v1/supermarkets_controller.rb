@@ -16,8 +16,8 @@ class Api::V1::SupermarketsController < Api::V1::BaseController
     @supermarket = Supermarket.find(params[:id])
 
 #############  PARSING   ###################################################################
-    if session["searched_word"]
-      current_user.searched_word = session["searched_word"]
+    if params[:query]
+      current_user.searched_word = params[:query]
     else
       current_user.searched_word = ''
     end
